@@ -3,11 +3,12 @@
     width: 100vw;
     background-size: cover;
     background-position: center;
+    transition-delay: 0.5s;
     transition-duration: 1s;
 }
 
 #login-box{
-    min-width: 340px;
+    min-width: 340px !important;
     box-shadow: 0px 0px 20px #d4d4d4;
 }
 
@@ -34,4 +35,21 @@
 
 .rounded-custom{
     border-radius: 20px !important;
+}
+
+#loading-window{
+  position: absolute;
+  border: 3px solid black;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+}
+
+#loading-animation{
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 40vw;
+  min-width: 340px !important;
+  transform: translate(-50%, -50%)
 }
