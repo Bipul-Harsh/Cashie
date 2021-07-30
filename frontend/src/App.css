@@ -3,6 +3,7 @@
     width: 100vw;
     background-size: cover;
     background-position: center;
+    transition-duration: 1s;
 }
 
 #login-box{
