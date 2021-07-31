@@ -16,6 +16,15 @@ function Login(props){
         bgImage3,
         bgImage4
     ];
+    let [formData, setFormData] = useState({
+        username: "",
+        password: ""
+    });
+    const formSchema = {
+        username: Joi.string().required().max(30).min(4),
+        password: Joi.string().required().max(30).min(3),
+    };
+    let [remember, setRemember] = useState(false);
 
     useEffect(()=>{
         const timer = setInterval(()=>{
@@ -25,16 +34,14 @@ function Login(props){
         return ()=>clearInterval(timer);
     })
 
-    const [formData, setFormData] = useState({
-        username: "",
-        password: ""
-    });
-    const [errors, setErrors] = useState([]);
-    const formSchema = {
-        username: Joi.string().required().max(30).min(4),
-        password: Joi.string().required().max(30).min(3),
-    };
-    const [remember, setRemember] = useState(false);
+    useEffect(()=>{
+        async function checkStoredToken(){
+            if(Cookies.get('token') || localStorage.getItem('token')){
+                props.history.push("/admin");
+            }
+        }
+        checkStoredToken();
+    },[props.history]);
 
     const handleFormChange = (e)=>{
         let updatedFormData = {...formData}
@@ -48,12 +55,19 @@ function Login(props){
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+        let warnings = "";
+
         let validationReport = Joi.validate(formData, formSchema);
         if(validationReport.error){
-            setErrors(validationReport.error.details);
-            return;
+            let warningBox = document.getElementById("warning-box");
+            warningBox.style.display = "block";
+            warnings += validationReport.error.details[0].message;
+            warningBox.innerText = warnings;
         }
+
+
         async function attemptLogin(){
+            console.log("attempting login")
             let animation = document.getElementById("loading-window")
             animation.style.display= "block";
             
@@ -68,7 +82,8 @@ function Login(props){
                 }
             );
             let data = await result.json();
-            if(data.status === "success"){
+            console.log(result.status)
+            if(result.status === 200){
                 if(remember){
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("id", data.user._id);
@@ -76,14 +91,21 @@ function Login(props){
                     Cookies.set("token", data.token, {expires: 1});
                     Cookies.set("id", data.user._id, {expires: 1});
                 }
+                console.log("Storing value done!");
+                let successBox = document.getElementById("success-box");
+                successBox.style.display = "block";
                 props.history.push("/admin");
             }else{
-                setErrors("Authentication failed");
+                console.log("Server Error");
+                let errorBox = document.getElementById("danger-box");
+                errorBox.style.display = "block";
+                errorBox.innerText = "Authentication failed";
             }
             animation.style.display = "none";
         }
-        attemptLogin();
-        console.log('error:',errors)
+        if(warnings.length===0){
+            attemptLogin();
+        }
     }
     
     return(
@@ -105,9 +127,13 @@ function Login(props){
                     </div>
                     <input className="btn btn-primary w-100" type="submit" value="Submit" />
                 </form>
-                <div class="alert alert-danger" role="alert">
-                    {errors}
+                <div className="alert alert-danger alert-dismissible fade show" role="alert" id="danger-box" style={{display:"none"}}>
+                    <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+                <div className="alert alert-warning alert-dismissible fade show" role="alert" id="warning-box" style={{display:"none"}}>
+                    <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div className="alert alert-success" role="alert" id="success-box" style={{display:"none"}}>Logged In!</div>
             </div>
         </div>
     )
