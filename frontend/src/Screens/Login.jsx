@@ -26,6 +26,7 @@ function Login(props){
     };
     let [remember, setRemember] = useState(false);
 
+
     useEffect(()=>{
         const timer = setInterval(()=>{
             setCount(counter+1);
@@ -37,18 +38,20 @@ function Login(props){
     useEffect(()=>{
         async function checkStoredToken(){
             if(Cookies.get('token') || localStorage.getItem('token')){
-                props.history.push("/admin");
+                props.history.push("/dashboard");
             }
         }
         checkStoredToken();
     },[props.history]);
 
+
     const handleFormChange = (e)=>{
         let updatedFormData = {...formData}
         if(e.target.name==="username" || e.target.name==="password")
             updatedFormData[e.target.name] = e.target.value;
-        else if(e.target.name==="remember")
+        else if(e.target.name==="remember"){
             setRemember(e.target.checked);
+        }
         
         setFormData(updatedFormData);
     }
@@ -67,7 +70,6 @@ function Login(props){
 
 
         async function attemptLogin(){
-            console.log("attempting login")
             let animation = document.getElementById("loading-window")
             animation.style.display= "block";
             
@@ -82,21 +84,19 @@ function Login(props){
                 }
             );
             let data = await result.json();
-            console.log(result.status)
             if(result.status === 200){
                 if(remember){
                     localStorage.setItem("token", data.token);
-                    localStorage.setItem("id", data.user._id);
-                }else{
-                    Cookies.set("token", data.token, {expires: 1});
-                    Cookies.set("id", data.user._id, {expires: 1});
+                    localStorage.setItem("user", JSON.stringify(data.user));
                 }
-                console.log("Storing value done!");
+                Cookies.set("token", data.token, {expires: 1});
+                Cookies.set("user", JSON.stringify(data.user, {expires: 1}));
+
                 let successBox = document.getElementById("success-box");
                 successBox.style.display = "block";
+                
                 props.history.push("/admin");
             }else{
-                console.log("Server Error");
                 let errorBox = document.getElementById("danger-box");
                 errorBox.style.display = "block";
                 errorBox.innerText = "Authentication failed";
@@ -122,7 +122,7 @@ function Login(props){
                     <input className="form-control text-pale-light p-2 full-opacity-bg rounded-custom" name="username" id="username" autoComplete="username" placeholder="Username" /><br />
                     <input className="form-control text-pale-light p-2 full-opacity-bg rounded-custom" type="password" name="password" id="password" autoComplete="current-password" placeholder="Password" /><br />
                     <div className="form-check mb-3">
-                        <input className="form-check-input" type="checkbox" name="remeber" id="remeber" />
+                        <input className="form-check-input" type="checkbox" name="remember" id="remeber" />
                         <label className="form-check-label" htmlFor="remeber">Remember me</label>
                     </div>
                     <input className="btn btn-primary w-100" type="submit" value="Submit" />

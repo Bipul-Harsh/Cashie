@@ -37,6 +37,10 @@
     border-radius: 20px !important;
 }
 
+.rounded-custom-15{
+  border-radius: 15px !important;
+}
+
 #loading-window{
   position: absolute;
   border: 3px solid black;
@@ -53,4 +57,54 @@
   width: 40vw;
   min-width: 340px !important;
   transform: translate(-50%, -50%)
+}
+
+/* Dash Board Styling */
+.main-window{
+  background-color: #1b1b1b;
+  width: 100vw;
+  height: 100vh;
+}
+
+.sidebar{
+  background-color: red;
+  max-width: 110px !important;
+  min-width: 90px !important;
+  z-index: 2000;
+}
+
+.sidebar-text{
+  font-size: 0.8rem;
+}
+
+.sidebar-section{
+  background-color: black;
+}
+
+.w-80{
+  width: 80%;
+}
+
+.main-display{
+  background-color: greenyellow;
+}
+
+.navbar{
+  background-color: blue;
+  min-height: 64px;
+}
+
+.main-content{
+  background-color: cyan;
+}
+
+.fixed-navbar{
+  position: fixed !important;
+  top: 0;
+  z-index: 1030;
+  width: 100%;
+}
+
+.active-section{
+  background-color: blue;
 }
