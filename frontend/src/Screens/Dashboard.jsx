@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
 import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
+import User from "../components/User";
 
 function Dashboard(props){
     const [section, setSection] = useState('1');
@@ -28,7 +29,10 @@ function Dashboard(props){
                         <div className="dummy-space col-2 gx-0"></div>
                         <Header setSection={setSection} {...props} />
                     </nav>
-
+                    <div className="dummy-height"></div>
+                    <Switch>
+                        <Route exact path={`${props.match.path}/users`} component={User} />
+                    </Switch>
                 </div>
             </div>            
         </div>

@@ -54,7 +54,7 @@
 }
 
 .sidebar{
-  background-color: red;
+  background-color: #303456b2;
   max-width: 110px !important;
   min-width: 90px !important;
   z-index: 2000;
@@ -73,7 +73,6 @@
 }
 
 .main-display{
-  background-color: greenyellow;
 }
 
 .navbar{
@@ -94,10 +93,48 @@
 }
 
 .active-section{
-  background-color: blue;
+  background-color: #ea517ac0;
 }
 
 .dropdown-list{
   left: auto !important;
   right: 0;
+}
+
+.dummy-height{
+  height: 64px;
+}
+
+.btn-theme{
+  background-color: #ea517ac0 !important;
+}
+
+#search:focus{
+  outline: none;
+}
+#role:focus{
+  outline: none;
+}
+#sort:focus{
+  outline: none;
+}
+
+.text-theme{
+  color: #ea517a !important;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.swal2-popup{
+  background-color: #3a3a3a !important;
+}
+
+.swal2-title{
+  color: rgb(218, 218, 218) !important;
+}
+
+.swal2-html-container{
+  color: rgb(218, 218, 218) !important;
 }
