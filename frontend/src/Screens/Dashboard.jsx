@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
 
 function Dashboard(props){
     const [section, setSection] = useState('1');
@@ -24,8 +25,10 @@ function Dashboard(props){
                 </div>
                 <div className="col main-display container-fluid gx-0">
                     <nav className="navbar fixed-navbar navbar-dark bg-dark row gx-0">
-
+                        <div className="dummy-space col-2 gx-0"></div>
+                        <Header setSection={setSection} {...props} />
                     </nav>
+
                 </div>
             </div>            
         </div>

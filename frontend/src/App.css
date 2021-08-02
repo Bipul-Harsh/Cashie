@@ -16,19 +16,6 @@
     background-color: rgba(0, 0, 0, 0.445) !important;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(235, 235, 235) !important;
-    opacity: 1; /* Firefox */
-  }
-  
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: rgb(235, 235, 235) !important;
-  }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
-    color: rgb(235, 235, 235) !important;
-  }
-
 .full-opacity-bg{
     background-color: transparent !important;
 }
@@ -103,8 +90,14 @@
   top: 0;
   z-index: 1030;
   width: 100%;
+  left: 0;
 }
 
 .active-section{
   background-color: blue;
+}
+
+.dropdown-list{
+  left: auto !important;
+  right: 0;
 }

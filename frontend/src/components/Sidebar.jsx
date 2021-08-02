@@ -12,7 +12,6 @@ function Sidebar(props){
             setUserRole(JSON.parse(Cookies.get("user")).role)
         else if(localStorage.getItem("user"))
             setUserRole(JSON.parse(localStorage.getItem("user")).role)
-        console.log(JSON.parse(Cookies.get("user")).role)
     }, []);
 
     return(
@@ -26,12 +25,16 @@ function Sidebar(props){
                     </div>
                 </Link>
             )) : cashierList.map(section => (
-                <Link to={`${props.match.path}/${section.page}`} onClick={()=>{props.setSection(section.id)}}>
+                <Link to={`${props.match.path}/${section.page}`} onClick={()=>{props.setSection(section.id)}} className={"text-decoration-none my-2 text-light sidebar-section w-80 rounded-custom-15 overflow-hidden"} key={section.id}>
+                    <div className={`d-flex flex-column align-items-center p-1 ${props.id === section.id ? "active-section" : ""}`}>
+                        <h4 className="mb-1">{section.icon}</h4>
+                        <h6 className="sidebar-text">{section.label}</h6>
+                    </div>
                 </Link>
             ))
             }
         </Fragment>
-    )
+    );
 }
 
 export default Sidebar;
