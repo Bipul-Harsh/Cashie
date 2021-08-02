@@ -109,9 +109,16 @@
   background-color: #ea517ac0 !important;
 }
 
-#search:focus{
+input:focus{
   outline: none;
 }
+input:focus{
+  box-shadow: 0px 0px 3px white;
+}
+select:focus{
+  box-shadow: 0px 0px 3px white;
+}
+
 #role:focus{
   outline: none;
 }
@@ -137,4 +144,21 @@
 
 .swal2-html-container{
   color: rgb(218, 218, 218) !important;
+}
+
+.username{
+  text-shadow: 0px 0px 20px blue;
+  color: #ff0076;
+}
+
+.form-bg{
+  background-color: rgba(0, 0, 0, 0.671);
+}
+
+.btn-theme-linear{
+  background: linear-gradient(45deg, rgba(234,81,121,1) 0%, rgba(172,54,115,1) 100%);
+}
+
+.btn-theme-linear:hover{
+  background: linear-gradient(45deg, rgba(234, 81, 122, 0.8) 0%, rgba(172, 54, 115, 0.8) 100%);
 }

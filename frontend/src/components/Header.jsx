@@ -32,7 +32,7 @@ function Header(props){
     return (
         <div className="col d-flex justify-content-between align-items-center">
             <div className="navbar-brand">
-                <h2 className="fs-3">Welcome, <span className="logo-font fs-3 ms-2">{user.fullname}</span></h2>
+                <h2 className="fs-3">Welcome, <span className="logo-font fs-3 ms-2 username">{user.fullname}</span></h2>
             </div>
             <div className="dropdown me-3">
                 <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdown-button" data-bs-toggle="dropdown" aria-expanded="false">

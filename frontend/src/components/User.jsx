@@ -59,7 +59,7 @@ function User(props){
         <div className="row p-3 gx-0">
             <div className="d-flex justify-content-between align-items-center mt-4">
                 <h4 className="fs-1">User List</h4>
-                <Link to={`${props.match.path}/user`}>
+                <Link to={`${props.match.path}/create`}>
                     <button className="btn btn-theme text-light rounded-pill">+ New Data</button>
                 </Link>
             </div>
@@ -67,7 +67,7 @@ function User(props){
                 <div className="d-flex justify-content-end mt-4">
                     <div className="d-flex flex-column px-2">
                         <p className="mb-1">Search</p>
-                        <input type="search" name="search" id="search" className="p-2 bg-dark text-light rounded-pill border-0" placeholder="Keyword" />
+                        <input type="search" name="keyword" id="keyword" className="p-2 bg-dark text-light rounded-pill border-0" placeholder="Keyword" />
                     </div>
                     <div className="d-flex flex-column px-2">
                         <p className="mb-1">Role</p>

@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import User from "../components/User";
+import UserForm from "../components/UserForm";
 
 function Dashboard(props){
     const [section, setSection] = useState('1');
@@ -31,7 +32,8 @@ function Dashboard(props){
                     </nav>
                     <div className="dummy-height"></div>
                     <Switch>
-                        <Route exact path={`${props.match.path}/users`} component={User} />
+                        <Route exact path={`${props.match.path}/user`} component={User} />
+                        <Route exact path={`${props.match.path}/user/create`} component={UserForm} />
                     </Switch>
                 </div>
             </div>            
