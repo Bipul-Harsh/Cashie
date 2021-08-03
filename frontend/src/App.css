@@ -57,15 +57,15 @@
   background-color: #303456b2;
   max-width: 110px !important;
   min-width: 90px !important;
-  z-index: 2000;
+  z-index: 1050;
 }
 
 .sidebar-text{
   font-size: 0.8rem;
 }
 
-.sidebar-section{
-  background-color: black;
+.sidebar-button:hover{
+  background-color: rgba(0, 0, 0, 0.61);
 }
 
 .w-80{
@@ -92,10 +92,6 @@
   left: 0;
 }
 
-.active-section{
-  background-color: #ea517ac0;
-}
-
 .dropdown-list{
   left: auto !important;
   right: 0;
@@ -106,6 +102,9 @@
 }
 
 .btn-theme{
+  background-color: #ea517a !important;
+}
+.btn-theme:hover{
   background-color: #ea517ac0 !important;
 }
 

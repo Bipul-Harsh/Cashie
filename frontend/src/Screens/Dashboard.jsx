@@ -21,11 +21,12 @@ function Dashboard(props){
 
     return(
         <div className="main-window container-fluid">
-            <div className="row h-100">
-                <div className="sidebar col-2 gx-0 d-flex align-items-center flex-column py-3">
+            <div className="row h-100 overflow-auto">
+                <div className="sidebar col-2 gx-0"></div>
+                <div className="sidebar col-2 gx-0 d-flex align-items-center flex-column py-3 h-100 position-fixed">
                     <Sidebar id={section} setSection={setSection} {...props} />
                 </div>
-                <div className="col main-display container-fluid gx-0">
+                <div className="col main-display container-fluid gx-0 overflow-auto">
                     <nav className="navbar fixed-navbar navbar-dark bg-dark row gx-0">
                         <div className="dummy-space col-2 gx-0"></div>
                         <Header setSection={setSection} {...props} />
@@ -34,6 +35,7 @@ function Dashboard(props){
                     <Switch>
                         <Route exact path={`${props.match.path}/user`} component={User} />
                         <Route exact path={`${props.match.path}/user/create`} component={UserForm} />
+                        <Route exact path={`${props.match.path}/user/update/:id`} component={UserForm} />
                     </Switch>
                 </div>
             </div>            
