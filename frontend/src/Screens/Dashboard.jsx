@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import User from "../components/User";
 import UserForm from "../components/UserForm";
 import Setting from "../components/Setting";
+import Account from "../components/Account";
 
 function Dashboard(props){
     const [section, setSection] = useState('1');
@@ -38,6 +39,7 @@ function Dashboard(props){
                         <Route exact path={`${props.match.path}/user/create`} component={UserForm} />
                         <Route exact path={`${props.match.path}/user/update/:id`} component={UserForm} />
                         <Route exact path={`${props.match.path}/setting`} component={Setting} />
+                        <Route exact path={`${props.match.path}/account`} component={Account} />
                     </Switch>
                 </div>
             </div>            

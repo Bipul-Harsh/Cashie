@@ -119,7 +119,7 @@ function Login(props){
                 </div>
                 <h2 className="logo-font text-center mb-5">Cashie</h2>
                 <form onChange={handleFormChange} onSubmit={handleSubmit} className="my-3">
-                    <input className="form-control text-pale-light p-2 full-opacity-bg rounded-custom" name="username" id="username" autoComplete="username" placeholder="Username" /><br />
+                    <input className="form-control text-pale-light p-2 full-opacity-bg rounded-custom" type="text" name="username" id="username" autoComplete="username" placeholder="Username" /><br />
                     <input className="form-control text-pale-light p-2 full-opacity-bg rounded-custom" type="password" name="password" id="password" autoComplete="current-password" placeholder="Password" /><br />
                     <div className="form-check mb-3">
                         <input className="form-check-input" type="checkbox" name="remember" id="remeber" />

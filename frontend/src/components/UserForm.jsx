@@ -132,9 +132,7 @@ function UserForm(props){
             let result = await fetch(`${process.env.REACT_APP_BACKEND_API}/user/${id}`);
             let response = await result.json();
             let data = response.data
-            console.log(data, response.data);
             if(data){
-                console.log("changing data")
                 setFormData({
                     fullname: data.fullname,
                     username: data.username,
