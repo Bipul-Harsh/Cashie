@@ -26,7 +26,6 @@ function UserForm(props){
 
     function handleOnChange(event){
         let warningBox = document.getElementById("warning-box")
-        console.log("changes happend")
         let newFormData = {...formData};
         newFormData[event.target.name] = event.target.value;
         setFormData(newFormData);
@@ -92,7 +91,6 @@ function UserForm(props){
                 })
                 props.history.goBack();
             }else{
-                console.log(result.data.message.errors[0].msg)
                 Swal.fire({
                     title: "<strong>Oops! Something Went Wrong</strong>",
                     icon: "error",
@@ -128,8 +126,6 @@ function UserForm(props){
             })
         })
     }
-
-    console.log(process.env.REACT_APP_BACKEND_API)
 
     useEffect(()=>{
         async function getUserData(id){
