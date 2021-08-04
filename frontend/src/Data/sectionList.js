@@ -9,15 +9,15 @@ const adminList = [
     {id: '1', label:"Dashboard", icon:<HomeIcon />, page:''},
     {id: '2', label:"Users", icon:<PeopleAltIcon />, page:'user'},
     {id: '3', label:"Category", icon:<CategoryIcon />, page:"category"},
-    {id: '4', label:"Product", icon:<LayersIcon />, page:"products"},
-    {id: "5", label:"Transaction", icon:<ReceiptIcon />, page:"transactions"},
-    {id: "6", label:"Report", icon:<AssessmentIcon />, page:"reports"}
+    {id: '4', label:"Product", icon:<LayersIcon />, page:"product"},
+    {id: "5", label:"Transaction", icon:<ReceiptIcon />, page:"transaction"},
+    {id: "6", label:"Report", icon:<AssessmentIcon />, page:"report"}
 ]
 
 const cashierList = [
     {id: '1', label:"DashBoard", icon:<HomeIcon />, page:''},
-    {id: '4', label:"Product", icon:<LayersIcon />, page:"products"},
-    {id: "5", label:"Transaction", icon:<ReceiptIcon />, page:"transactions"},
+    {id: '4', label:"Product", icon:<LayersIcon />, page:"product"},
+    {id: "5", label:"Transaction", icon:<ReceiptIcon />, page:"transaction"},
 ]
 
 export {adminList, cashierList};
