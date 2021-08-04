@@ -51,7 +51,7 @@ function UserForm(props){
         }
         axios({
             method: service,
-            url: `${process.env.REACT_APP_BACKEND_API}/user/${service==="PUT"?props.match.params.id:""}`,
+            url: `${process.env.REACT_APP_BACKEND_API}/category/${service==="PUT"?props.match.params.id:""}`,
             data: formData,
         }).then((result)=>{
             if(result.data.status === "success"){

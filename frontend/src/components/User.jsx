@@ -24,11 +24,41 @@ function User(props){
         setUsers(null);
         setQuery({ ...query, [event.target.name]:event.target.value });
     }
-    function handleDelete(id){
+    function handleDelete(user){
         Swal.fire({
             title: "Are you sure?",
             text: "User will be deleted!",
             icon: "warning",
+            html:`
+            <h2>User Info</h2>
+            <hr />
+            <table class="table table-dark table-striped table-hover mt-2 rounded-custom overflow-hidden align-middle">
+                <tr>
+                    <th>Full Name</th>
+                    <td>:</td>
+                    <td>${user.fullname}</td>
+                </tr>
+                <tr>
+                    <th>Username</th>
+                    <td>:</td>
+                    <td>${user.username}</td>
+                </tr>
+                <tr>
+                    <th>Role</th>
+                    <td>:</td>
+                    <td>
+                        <span class=${`rounded-pill p-1 border ${user.role==="Admin"?"border-danger text-theme":"border-info text-info"}`}>
+                            ${user.role==="Admin"?"Admin":"Cashier"}
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>:</td>
+                    <td>${user.email}</td>
+                </tr>
+            </table>
+            `,
             showCancelButton: true,
             confirmButtonText: "Delete",
             confirmButtonColor: "#bb2d3b",
@@ -41,15 +71,28 @@ function User(props){
         }).then((result)=>{
             if(result.isConfirmed){
                 axios
-                    .delete(`${process.env.REACT_APP_BACKEND_API}/user/${id}`)
+                    .delete(`${process.env.REACT_APP_BACKEND_API}/user/${user._id}`)
                     .then((res)=>{
-                        if(res.status === 200){
-                            Swal.fire("Deleted!", "User data has been deleted...");
+                        if(res.data.status === "success"){
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "User has been deleted",
+                                icon: "success"
+                            });
                             setRefresh(!refresh)
                         }
                     })
-                    .catch((err)=>{
-                        Swal.fire("Deleted!", "Something went wrong...");
+                    .catch((error)=>{
+                        Swal.fire({
+                            title: "<strong>Oops! Something Went Wrong</strong>",
+                            icon: "error",
+                            html: `
+                                <div class="alert alert-danger">
+                                    <strong>Error Message:</strong><br />
+                                    ${error.message}
+                                </div>
+                            `
+                        })
                     });
             }
         });
@@ -116,7 +159,7 @@ function User(props){
                                     <Link to={`${props.match.path}/update/${user._id}`}>
                                         <EditIcon />
                                     </Link>
-                                    <span className="cursor-pointer"><DeleteIcon onClick={() => handleDelete(user._id)} /></span>
+                                    <span className="cursor-pointer"><DeleteIcon onClick={() => handleDelete(user)} /></span>
                                 </td>
                             </tr>
                         ))
