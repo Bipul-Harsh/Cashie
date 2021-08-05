@@ -20,9 +20,7 @@ function Product(props){
             url: `${process.env.REACT_APP_BACKEND_API}/product?${queryString.stringify(query)}`,
         }).then((result)=>{
             if(result.data.status === "success"){
-                console.log("response: ",result.data.data.products);
                 setProducts(result.data.data.products);
-                console.log("stored: ",products);
             }
         });
     }, [refresh, query]);
@@ -108,8 +106,6 @@ function Product(props){
             }
         });
     };
-
-    console.log(products)
 
     return(
         <div className="row p-3 gx-0">

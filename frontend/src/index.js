@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/js/dist/alert";
 import "bootstrap/js/dist/dropdown";
+import "bootstrap/js/dist/tab";
 import {BrowserRouter} from "react-router-dom";
 
 ReactDOM.render(

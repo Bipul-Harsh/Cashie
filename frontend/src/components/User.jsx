@@ -20,7 +20,6 @@ function User(props){
         ).then((result)=>setUsers(result.data.data.users));
     }, [refresh, query]);
 
-    console.log("query String", queryString.stringify(query))
     function handleQueryChange(event){
         setUsers(null);
         setQuery({ ...query, [event.target.name]:event.target.value });

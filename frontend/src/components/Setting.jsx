@@ -51,8 +51,6 @@ function Setting(props){
             user = JSON.parse(localStorage.getItem("user"));
             id = user._id;
         }
-        console.log('id: ', id);
-        console.log("user: ", user);
 
         axios({
             method: "PUT",
@@ -113,7 +111,7 @@ function Setting(props){
             }
         }
         getValues();
-    })
+    }, [])
 
     return(
         <div className="row p-3 gx-0">

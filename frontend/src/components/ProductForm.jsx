@@ -74,7 +74,7 @@ function ProductForm(props){
                     <h2>Product Info</h2>
                     <hr />
                     <div class="d-flex justify-content-center">
-                        <img src=${formData.hidden} class="border border-info" width="128" height="128" />
+                        <img src=${image} class="border border-info" width="128" height="128" />
                     </div>
                     <table class="table table-dark table-striped table-hover mt-2 rounded-custom overflow-hidden align-middle">
                         <tr>
@@ -142,7 +142,6 @@ function ProductForm(props){
         var fileReader = new FileReader();
         fileReader.readAsDataURL(event.target.files[0]);
         fileReader.onload = function(fileEvent){
-            console.log("fileEvent: ", fileEvent.target.result);
             setImage(fileEvent.target.result);
         };
     };
@@ -176,8 +175,6 @@ function ProductForm(props){
                 }
             });
     }, [props.match.params.id]);
-
-    console.log(image);
 
     return(
         <div className="row p-3 gx-0">
