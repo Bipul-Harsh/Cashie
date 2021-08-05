@@ -173,3 +173,8 @@ textarea:focus{
 textarea{
   resize: none !important;
 }
+
+.no-image-holder{
+  width: 64px;
+  height: 64px;
+}

@@ -9,9 +9,9 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 function ProductForm(props){
     const params = useParams();
     const [formData, setFormData] = useState({});
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState(null);
     const [warnings, setWarnings] = useState([]);
-    const [productImage, setProductImage] = useState(null);
+    const [image, setImage] = useState(null);
     const formSchema = {
         name: Joi.string().required().min(3).max(50),
         price: Joi.number().required().max(1000000).min(0),
@@ -35,7 +35,6 @@ function ProductForm(props){
             setWarnings([]);
         }
     }
-    console.log('change data: ', formData)
 
     function handleOnSubmit(event){
         event.preventDefault();
@@ -51,13 +50,13 @@ function ProductForm(props){
         let multiFormData = new FormData();
         for(let i in formData){
             if(i === "price"){
-                multiFormData.append(i, formData[i]);
+                multiFormData.append(i, +formData[i]);
             }else{
                 multiFormData.append(i, formData[i]);
             }
         }
 
-        productImage && multiFormData.append("image", productImage);
+        image && multiFormData.append("image", image);
 
         axios({
             method: service,
@@ -140,12 +139,13 @@ function ProductForm(props){
         })
     }
     function handleUpload(event){
-        let fileReader = new FileReader();
+        var fileReader = new FileReader();
         fileReader.readAsDataURL(event.target.files[0]);
         fileReader.onload = function(fileEvent){
-            setProductImage(fileEvent.target.result);
-        }
-    }
+            console.log("fileEvent: ", fileEvent.target.result);
+            setImage(fileEvent.target.result);
+        };
+    };
 
     function triggerInput(){
         let imageInput = document.getElementById("image");
@@ -156,10 +156,28 @@ function ProductForm(props){
         axios({
             method: "GET",
             url: `${process.env.REACT_APP_BACKEND_API}/category`,
-        }).then((result)=>setCategories(result.data.data.categories));
+        }).then((result)=>{
+            if(result.data.status === "success")
+                setCategories(result.data.data.categories);
+        });
     }, []);
 
-    console.log(productImage);
+    useEffect(()=>{
+        let productID = props.match.params.id;
+        productID && 
+            axios({
+                method: "GET",
+                url: `${process.env.REACT_APP_BACKEND_API}/product/${productID}`
+            }).then((result)=>{
+                if(result.data.status === "success"){
+                    let {name, price, description, image: hidden, category} = result.data.data;
+                    setFormData({name, price, description, hidden, category});
+                    setService("PUT");
+                }
+            });
+    }, [props.match.params.id]);
+
+    console.log(image);
 
     return(
         <div className="row p-3 gx-0">
@@ -182,9 +200,9 @@ function ProductForm(props){
                         <textarea name="description" id="description" rows="5" autoComplete="on" className="bg-dark text-light p-2 px-3 rounded-custom border-0 mt-1" value={formData.description}></textarea>
                     </div>
                     <div className="col-12 d-flex flex-column my-3 px-2">
-                        <label htmlFor="description">Category<span className="text-danger">*</span></label>
+                        <label htmlFor="category">Category<span className="text-danger">*</span></label>
                         <select name="category" id="category" className="bg-dark text-light p-2 rounded-pill border-0 mt-1">
-                            <option value="None" value="" />
+                            <option aria-label="None" value="" />
                             {
                                 categories && categories.map((category)=>(
                                     <option selected={formData.category === category._id} key={category._id} value={category._id}>{category.name}</option>
@@ -195,15 +213,15 @@ function ProductForm(props){
                     <div className="col-12 my-3 px-2">
                         <p>Product Image</p>
                         <label htmlFor="image">
-                            <button type="button" className="btn btn-theme-linear text-light w-auto rounded-pill" onClick={triggerInput} >
+                            <button type="button" className="btn btn-theme-linear text-light rounded-pill" onClick={triggerInput} >
                                 <AddCircleOutlineIcon />&nbsp; Browse
                             </button>
                         </label>
                         <input onChange={handleUpload} type="file" name="hidden" accept="image/*" id="image" className="bg-dark text-light p-2 rounded-pill border-0 mt-1 d-none" />
                         <br />
                         {
-                            (productImage || formData.hidden) && (
-                                <img width="256" src={productImage?productImage:formData.hidden} alt="Product Image" className="mt-3 border border-theme" />
+                            (image || formData.hidden) && (
+                                <img width="256" src={image?image:formData.hidden} alt="Product Image" className="mt-3 border border-theme" />
                             )
                         }
                     </div>

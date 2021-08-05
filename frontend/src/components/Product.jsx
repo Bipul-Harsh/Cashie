@@ -9,18 +9,21 @@ import EditIcon from "@material-ui/icons/Edit";
 function Product(props){
     let [products, setProducts] = useState([]);
     let [query, setQuery] = useState({
-        limit: 100
+        limit: 100,
+        sort: "Newest",
     })
     let [refresh, setRefresh] = useState(false)
 
     useEffect(()=>{
         axios({
             method: "GET",
-            url: `${process.env.REACT_APP_BACKEND_API}/product?${queryString.stringify(query)}`
+            url: `${process.env.REACT_APP_BACKEND_API}/product?${queryString.stringify(query)}`,
         }).then((result)=>{
-            console.log("products", result.data.data.products)
-            setProducts(Array(result.data.data.products));
-            console.log("uploaded products: ", products);
+            if(result.data.status === "success"){
+                console.log("response: ",result.data.data.products);
+                setProducts(result.data.data.products);
+                console.log("stored: ",products);
+            }
         });
     }, [refresh, query]);
 
@@ -73,15 +76,21 @@ function Product(props){
         }).then((result)=>{
             if(result.isConfirmed){
                 axios
-                    .delete(`${process.env.REACT_APP_BACKEND_API}/user/${product._id}`)
+                    .delete(`${process.env.REACT_APP_BACKEND_API}/product/${product._id}`)
                     .then((res)=>{
                         if(res.data.status === "success"){
                             Swal.fire({
-                                title: "Deleted!",
-                                text: "User has been deleted",
+                                title: "<strong>Deleted!</strong>",
+                                text: "Product has been deleted!",
                                 icon: "success"
                             });
                             setRefresh(!refresh)
+                        }else{
+                            Swal.fire({
+                                title: "<strong>Oops!</strong>",
+                                text: "Something Went Wrong",
+                                icon: "error"
+                            })
                         }
                     })
                     .catch((error)=>{
@@ -99,6 +108,8 @@ function Product(props){
             }
         });
     };
+
+    console.log(products)
 
     return(
         <div className="row p-3 gx-0">
@@ -120,7 +131,8 @@ function Product(props){
                             <option value="Newest">Newest</option>
                             <option value="Oldest">Oldest</option>
                             <option value="Name">Name</option>
-                            <option value="Last Active">Last Active</option>
+                            <option value="Lowest to Highest">Highest to Lowest</option>
+                            <option value="Highest to Lowest">Lowest to Highest</option>
                         </select>
                     </div>
                 </div>
@@ -130,8 +142,8 @@ function Product(props){
                     <tr className="p-1 align-middle">
                         <th className="py-3">Image</th>
                         <th>Name</th>
-                        <th className="text-center">Price</th>
-                        <th className="text-end">Category</th>
+                        <th>Price</th>
+                        <th className="text-center">Category</th>
                         <th className="text-end">Actions</th>
                     </tr>
                 </thead>
@@ -140,13 +152,19 @@ function Product(props){
                         products && products.map((product)=>(
                             <tr key={product._id}>
                                 <td className="py-3">
-                                    <img src={product.image} width="64" height="64" alt="" />
+                                    {
+                                        product.image?(
+                                            <img src={product.image} width="64" height="64" alt="" className="border border-secondary" />
+                                        ):(
+                                            <span className="d-flex justify-content-center align-items-center no-image-holder bg-dark text-center border border-secondary">No Image</span>
+                                        )
+                                    }                                    
                                 </td>
                                 <td>{product.name}</td>
                                 <td>${product.price}</td>
                                 <td className="text-center">
-                                    <span className="rounded-pill p-1 bg-theme" >
-                                        {product.category}
+                                    <span className="rounded-pill p-1 bg-theme px-2" >
+                                        {product.category[0].name}
                                     </span>
                                 </td>
                                 <td className="text-end">

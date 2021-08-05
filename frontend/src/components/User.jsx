@@ -76,11 +76,17 @@ function User(props){
                     .then((res)=>{
                         if(res.data.status === "success"){
                             Swal.fire({
-                                title: "Deleted!",
+                                title: "<strong>Deleted!</strong>",
                                 text: "User has been deleted",
                                 icon: "success"
                             });
                             setRefresh(!refresh)
+                        }else{
+                            Swal.fire({
+                                title: "<strong>Oops!</strong>",
+                                text: "Something went wrong",
+                                icon: "error"
+                            })
                         }
                     })
                     .catch((error)=>{

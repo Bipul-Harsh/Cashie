@@ -49,6 +49,7 @@ function Dashboard(props){
                         <Route exact path={`${props.match.path}/category/update/:id`} component={CategoryForm} />
                         <Route exact path={`${props.match.path}/product`} component={Product} />
                         <Route exact path={`${props.match.path}/product/create`} component={ProductForm} />
+                        <Route exact path={`${props.match.path}/product/update/:id`} component={ProductForm} />
                     </Switch>
                 </div>
             </div>            
