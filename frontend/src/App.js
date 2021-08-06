@@ -2,6 +2,7 @@ import './App.css';
 import {Switch, Route, Redirect} from "react-router-dom";
 import Login from './Screens/Login';
 import Dashboard from "./Screens/Dashboard";
+import ReceiptModal from './components/ReceiptModal';
 import { useState, createContext, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -146,6 +147,7 @@ function App() {
           </Switch>
         </SettingsContext.Provider>
       </CartContext.Provider>
+      <ReceiptModal isOpen={receiptModel} onClose={handleClose} onOpen={handleOpen} transactionData={transactionData} />
     </div>
   );
 }

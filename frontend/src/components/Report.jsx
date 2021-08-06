@@ -60,8 +60,8 @@ function Report(){
             </form>
             <table className="table table-dark table-striped table-hover mt-4 rounded-custom-15 overflow-hidden align-middle">
                 <thead>
-                    <tr>
-                        <th>ID</th>
+                    <tr className="align-middle">
+                        <th className="py-3">ID</th>
                         <th>Date</th>
                         <th>Qty</th>
                         <th>Grandtotal</th>
