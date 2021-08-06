@@ -55,8 +55,8 @@ function Product(props){
                     <th>Category</th>
                     <td>:</td>
                     <td>
-                        <span class="rounded-pill p-1 bg-theme">
-                            ${product.category}
+                        <span class="rounded-pill p-1 px-2 bg-theme">
+                            ${product.category[0].name}
                         </span>
                     </td>
                 </tr>

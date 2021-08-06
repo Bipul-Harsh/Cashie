@@ -2,16 +2,8 @@ import React, { useState, useEffect, Fragment, useContext } from 'react';
 import axios from 'axios';
 import queryString from 'query-string';
 import Cart from './Cart';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import Card from '@material-ui/core/Card';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
-import Box from '@material-ui/core/Box';
 import { CartContext } from "../App";
 
 function TabPanel(props) {
@@ -60,8 +52,8 @@ function Transaction(){
     console.log("categories: ", categories)
 
     return(
-        <div className="row p-3 gx-0 mt-2 justify-content-evenly">
-            <div className="col-12 col-md-6 col-lg-7 p-4 mt-3 form-bg rounded-custom">
+        <div className="row p-3 gx-0 mt-2 justify-content-evenly align-items-start">
+            <div className="col-12 col-md-5 col-lg-7 p-4 mt-3 form-bg rounded-custom">
                 <Tabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example">
                     <Tab label="All" className="text-light" />
                     {categories && categories.map((category, index) => (
@@ -93,7 +85,7 @@ function Transaction(){
                     </TabPanel>
                 ))}
             </div>
-            <div className="col-12 col-md-5 col-lg-4 p-4 mt-3 form-bg rounded-custom">
+            <div className="col-12 col-md-6 col-lg-4 p-3 mt-3 form-bg rounded-custom cart-min-width">
                 <Cart />
             </div>
         </div>

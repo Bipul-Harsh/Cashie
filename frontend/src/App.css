@@ -181,3 +181,7 @@ textarea{
   width: 64px;
   height: 64px;
 }
+
+.cart-min-width{
+  min-width: 330px !important;
+}
