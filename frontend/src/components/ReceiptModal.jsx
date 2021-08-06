@@ -11,8 +11,8 @@ function ReceiptModal({isOpen, onOpen, onClose, transactionData}){
     console.log("transaction data: ", transactionData)
 
     return(
-        <div className={`receipt-modal ${isOpen?"d-flex":"d-none"}`}>
-            <div className={`p-4 bg-dark rounded-custom receipt`} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+        <div className={`receipt-modal overflow-auto py-2 ${isOpen?"d-flex":"d-none"}`}>
+            <div className="p-4 mt-5 bg-dark rounded-custom receipt" aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <div className="d-flex justify-content-between">
                     <div className="d-flex align-items-center">
                         <img src={logo} alt="" width="32" height="32" />

@@ -85,7 +85,7 @@ function Category(props){
     return(
         <div className="row gx-0 p-3">
             <div className="d-flex justify-content-between align-items-center mt-4">
-                <h4 className="fs-1">User List</h4>
+                <h4 className="fs-1">Category List</h4>
                 <Link to={`${props.match.path}/create`}>
                     <button className="btn btn-theme text-light rounded-pill">+ New Data</button>
                 </Link>

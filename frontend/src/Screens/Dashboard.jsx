@@ -13,6 +13,7 @@ import Product from "../components/Product";
 import ProductForm from "../components/ProductForm";
 import Transaction from "../components/Transaction";
 import Report from "../components/Report";
+import Home from "../components/Home";
 
 function Dashboard(props){
     const [section, setSection] = useState('1');
@@ -41,6 +42,7 @@ function Dashboard(props){
                     </nav>
                     <div className="dummy-height"></div>
                     <Switch>
+                        <Route exact path={`${props.match.path}/`} component={Home} />
                         <Route exact path={`${props.match.path}/user`} component={User} />
                         <Route exact path={`${props.match.path}/user/create`} component={UserForm} />
                         <Route exact path={`${props.match.path}/user/update/:id`} component={UserForm} />

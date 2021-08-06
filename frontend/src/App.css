@@ -72,12 +72,14 @@
   width: 80%;
 }
 
-.main-display{
-}
-
 .navbar{
   background-color: blue;
   min-height: 64px;
+}
+
+.dummy-space{
+  max-width: 110px !important;
+  min-width: 90px !important;
 }
 
 .main-content{
@@ -201,4 +203,24 @@ textarea{
 
 .receipt{
   min-width: 330px;
+}
+
+.dashboard-transaction-bg{
+  background: linear-gradient(16deg, rgba(234, 81, 122, 0.75) 0%, rgba(172,54,115,0.75) 100%);
+}
+
+.dashboard-income-bg{
+  background: linear-gradient(16deg, rgba(195,84,215,0.75) 0%, rgba(136,74,206,0.75) 100%);
+}
+
+.dashboard-product-bg{
+  background: linear-gradient(16deg, rgba(245,90,158,0.75) 0%, rgba(255,155,106,0.75) 100%);
+}
+
+.dashboard-panel-icon{
+  font-size: 4rem !important;
+  color: rgba(255, 255, 255, 0.6);
+}
+.dashboard-panel{
+  min-width: 300px;
 }
