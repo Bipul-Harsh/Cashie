@@ -47,11 +47,15 @@ function Home(props){
     
 
     if(dashboardData){
+        let dataGot = false;
         for(let ind=1; ind<=7; ind++){
             let index = dashboardData.data.items.findIndex((item)=>parseInt(item._id)===ind);
-            if(index===-1){
+            if(index===-1 && dataGot){
+                break;
+            }else if(index === -1){
                 weeklyIncome.push(0);
             }else{
+                dataGot = true;
                 weeklyIncome.push(dashboardData.data.items[index]["grandtotal"]);
             }
         }
@@ -64,7 +68,8 @@ function Home(props){
             data: weeklyIncome,
             fill: true,
             backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgb(255, 99, 132)"
+            borderColor: "rgb(255, 99, 132)",
+            lineTension: 0.2
         }]
     }
 
