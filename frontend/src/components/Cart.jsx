@@ -1,4 +1,4 @@
-import React, {useState, useContext, Fragment} from "react";
+import React, {useContext, Fragment} from "react";
 import {CartContext, SettingsContext} from "../App";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
@@ -13,8 +13,6 @@ function Cart(){
     const discount = storeSettings ? (+storeSettings.discount / 100) * subTotal : 0;
     const tax = storeSettings ? (+storeSettings.tax / 100) * subTotal : 0;
     const grandTotal = storeSettings ? subTotal + tax - discount : 0;
-
-    console.log("details: ",cartDetails)
 
     return(
         <Fragment>

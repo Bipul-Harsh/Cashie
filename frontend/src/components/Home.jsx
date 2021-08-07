@@ -25,25 +25,26 @@ function Home(props){
         end: moment().endOf("week").format("llll"),
         limit: 5,
     };
+    let queryStringify = queryString.stringify(query);
     let weeklyIncome = [];
 
     useEffect(()=>{
         async function getDashboardData(){
-            let result = await fetch(`${process.env.REACT_APP_BACKEND_API}/transaction/dashboard?${queryString.stringify(query)}`);
+            let result = await fetch(`${process.env.REACT_APP_BACKEND_API}/transaction/dashboard?${queryStringify}`);
             let data = await result.json();
             setDashboardData(data);
         }
         getDashboardData();
-    }, [queryString.stringify(query)]);
+    }, [queryStringify]);
 
     useEffect(()=>{
         async function getWeeklyTransaction(){
-            let result = await fetch(`${process.env.REACT_APP_BACKEND_API}/transaction?${queryString.stringify(query)}`);
+            let result = await fetch(`${process.env.REACT_APP_BACKEND_API}/transaction?${queryStringify}`);
             let data = await result.json();
             setWeeklyTransactions(data.data.transactions)
         }
         getWeeklyTransaction();
-    }, [queryString.stringify(query)]);
+    }, [queryStringify]);
     
 
     if(dashboardData){
@@ -73,8 +74,6 @@ function Home(props){
         }]
     }
 
-    console.log("weekly transaction: ", weeklyTransactions);
-
     return(
         <div className="row gx-0 p-3">
             <h4 className="fs-1 mt-4">Dashboard</h4>
@@ -91,7 +90,7 @@ function Home(props){
                 <div className="col-12 col-sm-6 col-lg-4 my-2">
                     <div className="dashboard-income-bg rounded-custom p-3 d-flex justify-content-between align-items-center">
                         <div className="d-flex flex-column">
-                            <h1 >{dashboardData && "$" + dashboardData.data.total}</h1>
+                            <h1 >{dashboardData && "$" + dashboardData.data.total.toFixed(2)}</h1>
                             <h6 className="m-0">Income</h6>
                         </div>
                         <AccountBalanceWalletIcon className="dashboard-panel-icon" />

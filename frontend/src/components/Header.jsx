@@ -56,9 +56,9 @@ function Header(props){
                     }
                     <hr className="my-1" />
                     <li>
-                        <a className="dropdown-item py-2" href="#" onClick={handleExit}>
+                        <button className="dropdown-item py-2" onClick={handleExit}>
                             <ExitToAppIcon /> Exit
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </div>

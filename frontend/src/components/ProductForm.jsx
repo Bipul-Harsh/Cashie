@@ -218,7 +218,7 @@ function ProductForm(props){
                         <br />
                         {
                             (image || formData.hidden) && (
-                                <img width="256" src={image?image:formData.hidden} alt="Product Image" className="mt-3 border border-theme" />
+                                <img width="256" src={image?image:formData.hidden} alt={formData.name} className="mt-3 border border-theme" />
                             )
                         }
                     </div>

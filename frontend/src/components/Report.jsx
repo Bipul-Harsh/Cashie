@@ -34,8 +34,6 @@ function Report(){
         getWeeklyTransaction();
     }, [query]);
 
-    console.log("transactions: ",weeklyTransactions)
-
     return(
         <div className="row p-3 gx-0">
             <h4 className="fs-1">Report</h4>

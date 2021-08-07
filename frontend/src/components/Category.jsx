@@ -116,7 +116,7 @@ function Category(props){
                 <tbody>
                     {
                         categories && categories.map((category)=>(
-                            <tr key={categories._id}>
+                            <tr key={category._id}>
                                 <td className="py-3">{category.name}</td>
                                 <td className="text-end">
                                     <Link to={`${props.match.path}/update/${category._id}`}>

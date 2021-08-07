@@ -8,8 +8,6 @@ function ReceiptModal({isOpen, onOpen, onClose, transactionData}){
         window.print();
     }
 
-    console.log("transaction data: ", transactionData)
-
     return(
         <div className={`receipt-modal overflow-auto py-2 ${isOpen?"d-flex":"d-none"}`}>
             <div className="p-4 mt-5 bg-dark rounded-custom receipt" aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
@@ -18,7 +16,7 @@ function ReceiptModal({isOpen, onOpen, onClose, transactionData}){
                         <img src={logo} alt="" width="32" height="32" />
                         <h2 className="logo-font fs-3 ms-2 my-0">Cashie</h2>
                     </div>
-                    <button type="button" class="btn-close btn-close-white" aria-label="Close" onClick={onClose}></button>
+                    <button type="button" className="btn-close btn-close-white" aria-label="Close" onClick={onClose}></button>
                 </div>
                 <div className="text-center mt-2">
                     <h4 className="fs-1">Receipt</h4>

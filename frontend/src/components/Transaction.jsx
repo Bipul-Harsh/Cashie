@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import queryString from 'query-string';
 import Cart from './Cart';
@@ -30,6 +30,7 @@ function Transaction(){
         limit: 100,
         page: 0
     })
+    let queryStringify = queryString.stringify(query);
 
     function handleChange(event, newValue){
         setValue(newValue);
@@ -39,17 +40,14 @@ function Transaction(){
         async function getAllCategoriesProducts(){
             let result = await axios({
                 method: "GET",
-                url: `${process.env.REACT_APP_BACKEND_API}/product/transaction?${queryString.stringify(query)}`
+                url: `${process.env.REACT_APP_BACKEND_API}/product/transaction?${queryStringify}`
             })
 
             setCategories(result.data.data.categories);
             setAllProducts(result.data.data.all);
         }
         getAllCategoriesProducts();
-    }, []);
-
-    console.log("all Products: ", allProducts)
-    console.log("categories: ", categories)
+    }, [queryStringify]);
 
     return(
         <div className="row p-3 gx-0 mt-2 justify-content-evenly align-items-start">

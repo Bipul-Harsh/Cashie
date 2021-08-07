@@ -25,7 +25,7 @@ function App() {
 
   const handleQtyChange = (id, type)=>{
     let index = cartItems.findIndex((item) => item._id === id);
-    if(index != -1){
+    if(index !== -1){
       let newCartItems = [...cartItems];
       if(newCartItems[index]["qty"] === 1 && type === "decrement")
         return;

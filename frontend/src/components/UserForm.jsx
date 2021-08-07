@@ -148,8 +148,6 @@ function UserForm(props){
         }
     }, [params.id]);
 
-    console.log(formData)
-
     return(
         <div className="row p-3 gx-0">
             <div className="d-flex justify-content-start align-items-center mt-4">
